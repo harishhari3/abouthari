@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-rdr-title {
+    font-family: 'Rye', 'IM Fell English SC', serif;
+    letter-spacing: 0.08em;
+  }
+  .font-rdr-header {
+    font-family: 'Eczar', serif;
+  }
+  .font-rdr-typewriter {
+    font-family: 'Special Elite', monospace;
+  }
+  .font-rdr-journal {
+    font-family: 'Caveat', cursive;
+  }
+  .font-rdr-cinzel {
+    font-family: 'Cinzel Decorative', serif;
+  }
+
+  /* RDR2 Distressed Paper Background */
+  .bg-wanted-paper {
+    background-color: #e8d3b0;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(244, 226, 198, 0.95) 0%, rgba(210, 180, 140, 0.9) 70%, rgba(140, 95, 45, 0.95) 100%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+    color: #2b1810;
+  }
+
+  .bg-journal-paper {
+    background-color: #d9c49d;
+    background-image: 
+      linear-gradient(rgba(120, 80, 40, 0.08) 1px, transparent 1px),
+      radial-gradient(ellipse at center, rgba(230, 210, 175, 0.9) 0%, rgba(185, 145, 95, 0.95) 100%);
+    background-size: 100% 28px, 100% 100%;
+    color: #1a0f0a;
+  }
+
+  .bg-rdr-dark {
+    background: radial-gradient(circle at 50% 30%, rgba(28, 18, 12, 0.85) 0%, rgba(12, 7, 4, 0.9) 80%, rgba(5, 3, 2, 0.95) 100%);
+  }
+
+  .bg-saloon-wood {
+    background-color: rgba(35, 22, 14, 0.85);
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.5) 100%),
+      repeating-linear-gradient(0deg, #2a1a10, #2a1a10 40px, #1d120b 41px, #1d120b 80px);
+  }
+
+  .bg-radial-vignette {
+    background: radial-gradient(circle at center, transparent 35%, rgba(10, 5, 3, 0.8) 100%);
+  }
+
+  /* RDR2 Cracked Gold & Red Borders */
+  .border-rdr-red {
+    border-color: #8b0000;
+  }
+  .text-rdr-red {
+    color: #b31212;
+  }
+  .bg-rdr-red {
+    background-color: #8b0000;
+  }
+
+  .border-rdr-gold {
+    border-color: #c89d47;
+  }
+  .text-rdr-gold {
+    color: #d4af37;
+  }
+
+  /* Shadow & Glows */
+  .shadow-rdr-poster {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(139, 0, 0, 0.3);
+  }
+  
+  .glow-godrays {
+    background: radial-gradient(circle at 50% -20%, rgba(235, 160, 60, 0.3) 0%, rgba(200, 90, 20, 0.1) 45%, transparent 70%);
+  }
+
+  .glow-campfire {
+    background: radial-gradient(circle at 50% 80%, rgba(255, 110, 20, 0.25) 0%, rgba(200, 60, 10, 0.08) 50%, transparent 80%);
+  }
+
+  .glow-dawn {
+    background: radial-gradient(circle at 30% 20%, rgba(100, 160, 220, 0.2) 0%, rgba(220, 140, 80, 0.1) 45%, transparent 75%);
+  }
+}
+
+/* Smooth Scrolling & Parallax Transitions */
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+/* Base custom RDR scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0a07;
+  border-left: 1px solid #332115;
+}
+::-webkit-scrollbar-thumb {
+  background: #6b1f1f;
+  border-radius: 2px;
+  border: 1px solid #c89d47;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b0000;
+}
+
+/* Vintage Wanted Poster Stamped Text */
+.stamped-text {
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.8), -1px -1px 0px rgba(139,0,0,0.5);
+  filter: contrast(120%);
+}
+
+.stamped-red-box {
+  border: 4px double #8b0000;
+  box-shadow: inset 0 0 8px rgba(139, 0, 0, 0.4);
+}
+
+/* Dead-Eye Tint Effect */
+.deadeye-active {
+  filter: sepia(100%) hue-rotate(-20deg) saturate(300%) contrast(140%) brightness(85%);
+  transition: filter 0.3s ease;
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Vignette */
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+/* Animations */
+@keyframes floatDust {
+  0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+  50% { transform: translateY(-15px) translateX(8px); opacity: 0.7; }
+  100% { transform: translateY(-30px) translateX(-5px); opacity: 0.2; }
+}
+
+.animate-dust {
+  animation: floatDust 6s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+@keyframes emberRise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-120px) translateX(20px) scale(0.3); opacity: 0; }
+}
+
+.ember-particle {
+  position: absolute;
+  background: #ff7700;
+  box-shadow: 0 0 6px #ff4500, 0 0 12px #ff7700;
+  border-radius: 50%;
+  animation: emberRise 3s infinite linear;
+}
